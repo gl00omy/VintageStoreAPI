@@ -35,10 +35,12 @@ namespace VintageStore.Controllers
              var dbStore = await _context.VintageStores.FindAsync(store.Id);
             if(dbStore == null) 
                 return BadRequest("Item not found");
-            dbStore.Name = store.Name;
+            
             dbStore.FirstName = store.FirstName;
             dbStore.LastName = store.LastName;  
-            dbStore.Place = store.Place;
+            dbStore.address = store.address;
+            dbStore.foodName = store.foodName;
+            dbStore.totalPrice = store.totalPrice;
 
             await _context.SaveChangesAsync();
             return Ok(await _context.VintageStores.ToListAsync());
